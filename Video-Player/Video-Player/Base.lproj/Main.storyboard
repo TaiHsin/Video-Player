@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -115,6 +116,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="73n-PZ-eOs">
+                                <rect key="frame" x="0.0" y="228" width="375" height="211"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="73n-PZ-eOs" secondAttribute="height" multiplier="16:9" id="L1Z-tW-f0S"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -129,9 +136,13 @@
                             <constraint firstItem="BQ5-jx-wS3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T6T-RR-Q3y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BQ5-jx-wS3" secondAttribute="bottom" constant="30" id="VOI-Ro-pYm"/>
                             <constraint firstItem="meH-Ac-FXr" firstAttribute="leading" secondItem="ojT-SE-sSB" secondAttribute="trailing" constant="10" id="VZU-mR-cce"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="73n-PZ-eOs" secondAttribute="trailing" id="Z08-Bi-B0V"/>
+                            <constraint firstItem="73n-PZ-eOs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZCg-WM-sQI"/>
                             <constraint firstItem="rKx-n4-m8x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="hJu-qs-1CK"/>
+                            <constraint firstItem="73n-PZ-eOs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="isf-Vy-8lV"/>
                             <constraint firstItem="SCe-PB-WtP" firstAttribute="top" secondItem="mrc-JN-axn" secondAttribute="bottom" constant="44" id="liJ-4X-qux"/>
                             <constraint firstItem="xLb-vf-KHu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="ms6-Vw-soj"/>
+                            <constraint firstItem="73n-PZ-eOs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="uFT-ui-wAT"/>
                             <constraint firstItem="xLb-vf-KHu" firstAttribute="leading" secondItem="rKx-n4-m8x" secondAttribute="trailing" constant="10" id="zfm-pz-cNf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
