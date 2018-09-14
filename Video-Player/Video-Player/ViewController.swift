@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rewindButton: UIButton!
     @IBOutlet weak var volumeButton: UIButton!
     @IBOutlet weak var fullScreenButton: UIButton!
+    @IBOutlet weak var videoView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
