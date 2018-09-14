@@ -32,8 +32,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         playerLayer.videoGravity = .resize
-        let value = UIInterfaceOrientation.portrait.rawValue
-        UIDevice.current.setValue(value, forKey: Constants.orientation)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +137,6 @@ class ViewController: UIViewController {
             slideToControlBar.constant = 10
 
             navigationController?.navigationBar.isHidden = true
-            
         } else {
             
             let value = UIInterfaceOrientation.portrait.rawValue
