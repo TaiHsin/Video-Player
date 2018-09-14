@@ -27,4 +27,8 @@ struct Constants {
     static let fullScreenExit = "btn_fullScreen_exit"
     
     static let emptyString = ""
+    
+    static let duration = "duration"
+    
+    static let orientation = "orientation"
 }
