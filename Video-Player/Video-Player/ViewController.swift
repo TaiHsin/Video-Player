@@ -22,14 +22,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var fullScreenButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var timeSlider: UISlider!
+    @IBOutlet weak var controlBarToBottom: NSLayoutConstraint!
+    @IBOutlet weak var slideToControlBar: NSLayoutConstraint!
     
     var player = AVPlayer()
     var playerLayer =  AVPlayerLayer()
+    let buttonString = ButtonConstant()
     
 //    override var prefersStatusBarHidden: Bool {
 //        return UIApplication.shared.statusBarOrientation.isLandscape
 //    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,9 @@ class ViewController: UIViewController {
         playerLayer.videoGravity = .resize
         
         NotificationCenter.default.addObserver(self, selector: #selector(videoDidRotate), name: .UIDeviceOrientationDidChange, object: nil)
+        
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
     }
     
     @objc func videoDidRotate() {
@@ -54,7 +59,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,7 +90,6 @@ class ViewController: UIViewController {
     
     @IBAction func searchAndPlay(_ sender: Any) {
         
-
         guard let url = urlTextField.text else { return }
         print(url)
         guard let videoUrl = URL(string: url) else { return }
@@ -98,7 +101,6 @@ class ViewController: UIViewController {
         player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
 
         playButton.setImage(#imageLiteral(resourceName: "btn_stop"), for: .normal)
-        
         player.play()
         
         urlTextField.text = ""
@@ -109,10 +111,13 @@ class ViewController: UIViewController {
         
         if player.rate == 0 {
             player.play()
-            sender.setImage(#imageLiteral(resourceName: "btn_stop"), for: .normal)
+            
+            let image = UIImage(named: ButtonConstant.stop)?.withRenderingMode(.alwaysTemplate)
+            sender.setImage(image, for: .normal)
         } else {
             player.pause()
-            sender.setImage(#imageLiteral(resourceName: "btn_play"), for: .normal)
+            let image = UIImage(named: ButtonConstant.play)?.withRenderingMode(.alwaysTemplate)
+            sender.setImage(image, for: .normal)
         }
     }
     
@@ -128,6 +133,7 @@ class ViewController: UIViewController {
             player.seek(to: time)
         }
     }
+    
     @IBAction func playRewind(_ sender: Any) {
         let currenTime = CMTimeGetSeconds(player.currentTime())
         var newTime = currenTime - 10.0
@@ -144,17 +150,64 @@ class ViewController: UIViewController {
 
             let value = UIInterfaceOrientation.landscapeRight.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
-            fullScreenButton.setImage(#imageLiteral(resourceName: "btn_fullScreen_exit"), for: .normal)
+            
+            currentTimeLabel.textColor = UIColor.white
+            durationLabel.textColor = UIColor.white
+
+            let volumeImage = UIImage(named: ButtonConstant.volumeUp)?.withRenderingMode(.alwaysTemplate)
+            volumeButton.setImage(volumeImage, for: .normal)
+            volumeButton.tintColor = UIColor.white
+            
+            let rewindImage = UIImage(named: ButtonConstant.playRewind)?.withRenderingMode(.alwaysTemplate)
+            rewindButton.setImage(rewindImage, for: .normal)
+            rewindButton.tintColor = UIColor.white
+            
+            let playImage = UIImage(named: ButtonConstant.play)?.withRenderingMode(.alwaysTemplate)
+            playButton.setImage(playImage, for: .normal)
+            playButton.tintColor = UIColor.white
+            
+            let forwardImage = UIImage(named: ButtonConstant.playForward)?.withRenderingMode(.alwaysTemplate)
+            forwardButton.setImage(forwardImage, for: .normal)
+            forwardButton.tintColor = UIColor.white
+            
+            let fullScreenImage = UIImage(named: ButtonConstant.fullScreenExit)?.withRenderingMode(.alwaysTemplate)
+            fullScreenButton.setImage(fullScreenImage, for: .normal)
+            fullScreenButton.tintColor = UIColor.white
+            
+            controlBarToBottom.constant = 10
+            slideToControlBar.constant = 10
+            
         } else {
             
             let value = UIInterfaceOrientation.portrait.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
-            fullScreenButton.setImage(#imageLiteral(resourceName: "btn_fullScreen"), for: .normal)
+            
+            currentTimeLabel.textColor = UIColor.black
+            durationLabel.textColor = UIColor.black
+            
+            let volumeImage = UIImage(named: ButtonConstant.volumeUp)?.withRenderingMode(.alwaysTemplate)
+            volumeButton.setImage(volumeImage, for: .normal)
+            volumeButton.tintColor = UIColor.black
+            
+            let rewindImage = UIImage(named: ButtonConstant.playRewind)?.withRenderingMode(.alwaysTemplate)
+            rewindButton.setImage(rewindImage, for: .normal)
+            rewindButton.tintColor = UIColor.black
+            
+            let playImage = UIImage(named: ButtonConstant.play)?.withRenderingMode(.alwaysTemplate)
+            playButton.setImage(playImage, for: .normal)
+            playButton.tintColor = UIColor.black
+            
+            let forwardImage = UIImage(named: ButtonConstant.playForward)?.withRenderingMode(.alwaysTemplate)
+            forwardButton.setImage(forwardImage, for: .normal)
+            forwardButton.tintColor = UIColor.black
+            
+            let fullScreenImage = UIImage(named: ButtonConstant.fullScreen)?.withRenderingMode(.alwaysTemplate)
+            fullScreenButton.setImage(fullScreenImage, for: .normal)
+            fullScreenButton.tintColor = UIColor.black
+            
+            controlBarToBottom.constant = 30
+            slideToControlBar.constant = 30
         }
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -181,12 +234,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func setVolume(_ sender: Any) {
+        if player.volume == 0 {
+            player.volume = 1
+            volumeButton.setImage(UIImage(named: ButtonConstant.volumeUp), for: .normal)
+        } else {
+            player.volume = 0
+            volumeButton.setImage(UIImage(named: ButtonConstant.volumeOff), for: .normal)
+        }
     }
     
 }
 
 // 1. landscape to hide navi bar
-// 2. landscape to show control bar
+// 2. landscape to hide control bar
 // 3. determine url is valid or not to show "目前沒有可播放的影片"
 // 4. Solve duplicate player playing issue when search url more than one time
 
