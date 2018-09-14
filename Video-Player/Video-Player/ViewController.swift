@@ -26,12 +26,22 @@ class ViewController: UIViewController {
     var player = AVPlayer()
     var playerLayer =  AVPlayerLayer()
     
+//    override var prefersStatusBarHidden: Bool {
+//        return UIApplication.shared.statusBarOrientation.isLandscape
+//    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Resize when rotate
         playerLayer.videoGravity = .resize
         
+        NotificationCenter.default.addObserver(self, selector: #selector(videoDidRotate), name: .UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    @objc func videoDidRotate() {
+//        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +54,15 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Rotate back to portrait before leave view
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
     }
     
     override func viewDidLayoutSubviews() {
@@ -120,8 +139,24 @@ class ViewController: UIViewController {
         player.seek(to: time)
     }
     
-//    @IBAction func setFullScreen(_ sender: Any) {
-//    }
+    @IBAction func setFullScreen(_ sender: Any) {
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+
+            let value = UIInterfaceOrientation.landscapeRight.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            fullScreenButton.setImage(#imageLiteral(resourceName: "btn_fullScreen_exit"), for: .normal)
+        } else {
+            
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            fullScreenButton.setImage(#imageLiteral(resourceName: "btn_fullScreen"), for: .normal)
+        }
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         player.seek(to: CMTimeMake(Int64(sender.value * 1000), 1000))
     }
