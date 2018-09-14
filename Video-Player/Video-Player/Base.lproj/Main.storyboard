@@ -29,22 +29,136 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="yba-Pe-fOf"/>
                                 </constraints>
-                                <state key="normal" title="搜尋"/>
+                                <state key="normal" title="搜尋">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ojT-SE-sSB">
+                                <rect key="frame" x="58" y="543" width="259" height="31"/>
+                                <color key="tintColor" red="0.56470588235294117" green="0.19607843137254902" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </slider>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="BQ5-jx-wS3">
+                                <rect key="frame" x="47.5" y="613" width="280" height="24"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCe-PB-WtP">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="BuG-YQ-vaP"/>
+                                            <constraint firstAttribute="width" constant="24" id="Dtz-vV-pE6"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn_volume_up"/>
+                                        <connections>
+                                            <action selector="setVolume:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Of-1o-Ty1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raB-Gx-ORL">
+                                        <rect key="frame" x="64" y="0.0" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="Zxa-6A-cXY"/>
+                                            <constraint firstAttribute="width" constant="24" id="fEB-HO-iWc"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn_play_rewind"/>
+                                        <connections>
+                                            <action selector="playRewind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n8Z-R4-bR5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oms-PZ-GpA">
+                                        <rect key="frame" x="128" y="0.0" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="FKb-eS-k8j"/>
+                                            <constraint firstAttribute="height" constant="24" id="tkk-iA-dae"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn_play"/>
+                                        <connections>
+                                            <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xAN-Pt-plu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aR9-wl-Ev3">
+                                        <rect key="frame" x="192" y="0.0" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="RKZ-g9-69Y"/>
+                                            <constraint firstAttribute="width" constant="24" id="TAW-y6-8HK"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn_play_forward"/>
+                                        <connections>
+                                            <action selector="playForward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mC7-pR-yEO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvq-1c-BK9">
+                                        <rect key="frame" x="256" y="0.0" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="TLO-PI-yDH"/>
+                                            <constraint firstAttribute="height" constant="24" id="tQX-h5-fCA"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn_fullScreen"/>
+                                        <connections>
+                                            <action selector="setFullScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UYw-Ku-mJY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meH-Ac-FXr">
+                                <rect key="frame" x="325" y="548.5" width="40" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="czg-zk-Fis"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrc-JN-axn">
+                                <rect key="frame" x="10" y="548.5" width="40" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="YXy-2B-t5a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ojT-SE-sSB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5DX-ze-VkP"/>
+                            <constraint firstItem="BQ5-jx-wS3" firstAttribute="top" secondItem="ojT-SE-sSB" secondAttribute="bottom" constant="40" id="A38-nO-iLh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="meH-Ac-FXr" secondAttribute="trailing" constant="10" id="DPG-dy-j5n"/>
                             <constraint firstItem="rKx-n4-m8x" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="HIt-fi-r9R"/>
+                            <constraint firstItem="pvq-1c-BK9" firstAttribute="top" secondItem="meH-Ac-FXr" secondAttribute="bottom" constant="44" id="Jex-oW-P58"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xLb-vf-KHu" secondAttribute="trailing" constant="10" id="NS6-nT-f3t"/>
+                            <constraint firstItem="mrc-JN-axn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="On4-nv-V2X"/>
+                            <constraint firstItem="ojT-SE-sSB" firstAttribute="leading" secondItem="mrc-JN-axn" secondAttribute="trailing" constant="10" id="SRG-Tp-bFj"/>
+                            <constraint firstItem="BQ5-jx-wS3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T6T-RR-Q3y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BQ5-jx-wS3" secondAttribute="bottom" constant="30" id="VOI-Ro-pYm"/>
+                            <constraint firstItem="meH-Ac-FXr" firstAttribute="leading" secondItem="ojT-SE-sSB" secondAttribute="trailing" constant="10" id="VZU-mR-cce"/>
                             <constraint firstItem="rKx-n4-m8x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="hJu-qs-1CK"/>
+                            <constraint firstItem="SCe-PB-WtP" firstAttribute="top" secondItem="mrc-JN-axn" secondAttribute="bottom" constant="44" id="liJ-4X-qux"/>
                             <constraint firstItem="xLb-vf-KHu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="ms6-Vw-soj"/>
                             <constraint firstItem="xLb-vf-KHu" firstAttribute="leading" secondItem="rKx-n4-m8x" secondAttribute="trailing" constant="10" id="zfm-pz-cNf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Video-Player" id="7yB-Nt-IwZ"/>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="mrc-JN-axn" id="c5h-g3-DGK"/>
+                        <outlet property="forwardButton" destination="aR9-wl-Ev3" id="xIX-SC-sIZ"/>
+                        <outlet property="fullScreenButton" destination="pvq-1c-BK9" id="Bd5-Gc-Qzu"/>
+                        <outlet property="inputUrlTextField" destination="rKx-n4-m8x" id="4Ia-J8-LUD"/>
+                        <outlet property="playButton" destination="oms-PZ-GpA" id="XtN-0Q-PlP"/>
+                        <outlet property="rewindButton" destination="raB-Gx-ORL" id="Lhs-bl-A7l"/>
+                        <outlet property="searchButton" destination="xLb-vf-KHu" id="jhF-uB-zVY"/>
+                        <outlet property="searchDisplayController" destination="cIf-9w-dMk" id="cfn-7p-qN9"/>
+                        <outlet property="totalTimeLabel" destination="meH-Ac-FXr" id="gt4-Ed-fcx"/>
+                        <outlet property="volumeButton" destination="SCe-PB-WtP" id="uJJ-bU-tKk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="cIf-9w-dMk">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Yhh-91-uP1"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="jIS-Cm-Tpf"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="8fv-Ud-ZqP"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="hdH-mk-gKT"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
@@ -71,4 +185,11 @@
             <point key="canvasLocation" x="289" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_fullScreen" width="12" height="12"/>
+        <image name="btn_play" width="12" height="12"/>
+        <image name="btn_play_forward" width="12" height="12"/>
+        <image name="btn_play_rewind" width="12" height="12"/>
+        <image name="btn_volume_up" width="12" height="12"/>
+    </resources>
 </document>

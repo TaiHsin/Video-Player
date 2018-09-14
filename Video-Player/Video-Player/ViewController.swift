@@ -9,17 +9,48 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var inputUrlTextField: UITextField!
+    @IBOutlet weak var totalTimeLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var rewindButton: UIButton!
+    @IBOutlet weak var volumeButton: UIButton!
+    @IBOutlet weak var fullScreenButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchButton.layer.cornerRadius = 5
+        searchButton.layer.borderColor = UIColor(red: 185/255, green: 185/255, blue: 185/255, alpha: 1).cgColor
+        searchButton.layer.borderWidth = 1
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
-
-
+    
+    @IBAction func playVideo(_ sender: Any) {
+    }
+    
+    @IBAction func playForward(_ sender: Any) {
+    }
+    @IBAction func playRewind(_ sender: Any) {
+    }
+    
+//    @IBAction func setFullScreen(_ sender: Any) {
+//    }
+    
+    @IBAction func setVolume(_ sender: Any) {
+    }
+    
 }
 
