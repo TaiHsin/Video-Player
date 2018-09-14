@@ -37,9 +37,12 @@
                                     <action selector="searchAndPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Riq-1g-5uQ"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ojT-SE-sSB">
-                                <rect key="frame" x="58" y="543" width="259" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ojT-SE-sSB">
+                                <rect key="frame" x="73" y="543" width="229" height="31"/>
                                 <color key="tintColor" red="0.56470588235294117" green="0.19607843137254902" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="SXs-7M-KA9"/>
+                                </connections>
                             </slider>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="BQ5-jx-wS3">
                                 <rect key="frame" x="47.5" y="613" width="280" height="24"/>
@@ -101,19 +104,19 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meH-Ac-FXr">
-                                <rect key="frame" x="325" y="548.5" width="40" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meH-Ac-FXr">
+                                <rect key="frame" x="310" y="548.5" width="55" height="20.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="czg-zk-Fis"/>
+                                    <constraint firstAttribute="width" constant="55" id="czg-zk-Fis"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrc-JN-axn">
-                                <rect key="frame" x="10" y="548.5" width="40" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrc-JN-axn">
+                                <rect key="frame" x="10" y="548.5" width="55" height="20.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="YXy-2B-t5a"/>
+                                    <constraint firstAttribute="width" constant="55" id="YXy-2B-t5a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -154,13 +157,14 @@
                     <navigationItem key="navigationItem" title="Video-Player" id="7yB-Nt-IwZ"/>
                     <connections>
                         <outlet property="currentTimeLabel" destination="mrc-JN-axn" id="c5h-g3-DGK"/>
+                        <outlet property="durationLabel" destination="meH-Ac-FXr" id="gt4-Ed-fcx"/>
                         <outlet property="forwardButton" destination="aR9-wl-Ev3" id="xIX-SC-sIZ"/>
                         <outlet property="fullScreenButton" destination="pvq-1c-BK9" id="Bd5-Gc-Qzu"/>
                         <outlet property="playButton" destination="oms-PZ-GpA" id="XtN-0Q-PlP"/>
                         <outlet property="rewindButton" destination="raB-Gx-ORL" id="Lhs-bl-A7l"/>
                         <outlet property="searchButton" destination="xLb-vf-KHu" id="jhF-uB-zVY"/>
                         <outlet property="searchDisplayController" destination="cIf-9w-dMk" id="cfn-7p-qN9"/>
-                        <outlet property="totalTimeLabel" destination="meH-Ac-FXr" id="gt4-Ed-fcx"/>
+                        <outlet property="timeSlider" destination="ojT-SE-sSB" id="ZtW-k4-P70"/>
                         <outlet property="urlTextField" destination="rKx-n4-m8x" id="4Ia-J8-LUD"/>
                         <outlet property="videoView" destination="Veb-qL-IXB" id="7PZ-xB-Nl3"/>
                         <outlet property="volumeButton" destination="SCe-PB-WtP" id="uJJ-bU-tKk"/>
