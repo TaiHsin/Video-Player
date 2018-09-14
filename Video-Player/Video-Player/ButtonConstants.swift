@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ButtonConstant {
+struct Constants {
     
     static let play = "btn_play"
     
@@ -25,4 +25,6 @@ struct ButtonConstant {
     static let fullScreen = "btn_fullScreen"
     
     static let fullScreenExit = "btn_fullScreen_exit"
+    
+    static let emptyString = ""
 }

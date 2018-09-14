@@ -27,11 +27,7 @@ class ViewController: UIViewController {
     
     var player = AVPlayer()
     var playerLayer =  AVPlayerLayer()
-    let buttonString = ButtonConstant()
-    
-//    override var prefersStatusBarHidden: Bool {
-//        return UIApplication.shared.statusBarOrientation.isLandscape
-//    }
+    let buttonString = Constants()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +35,8 @@ class ViewController: UIViewController {
         // Resize when rotate
         playerLayer.videoGravity = .resize
         
-        NotificationCenter.default.addObserver(self, selector: #selector(videoDidRotate), name: .UIDeviceOrientationDidChange, object: nil)
-        
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-    }
-    
-    @objc func videoDidRotate() {
-//        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +69,7 @@ class ViewController: UIViewController {
     func addTimeObserver() {
         let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         let mainQueue = DispatchQueue.main
+        
         _ = player.addPeriodicTimeObserver(forInterval: interval, queue: mainQueue, using: { [weak self] time in
             guard let currentItem = self?.player.currentItem else { return }
             self?.timeSlider.maximumValue = Float(currentItem.duration.seconds)
@@ -103,8 +94,7 @@ class ViewController: UIViewController {
         playButton.setImage(#imageLiteral(resourceName: "btn_stop"), for: .normal)
         player.play()
         
-        urlTextField.text = ""
-
+        urlTextField.text = Constants.emptyString
     }
     
     @IBAction func playPressed(_ sender: UIButton) {
@@ -112,12 +102,12 @@ class ViewController: UIViewController {
         if player.rate == 0 {
             player.play()
             
-            let image = UIImage(named: ButtonConstant.stop)?.withRenderingMode(.alwaysTemplate)
-            sender.setImage(image, for: .normal)
+            let image = UIImage(named: Constants.stop)?.withRenderingMode(.alwaysTemplate)
+            playButton.setImage(image, for: .normal)
         } else {
             player.pause()
-            let image = UIImage(named: ButtonConstant.play)?.withRenderingMode(.alwaysTemplate)
-            sender.setImage(image, for: .normal)
+            let image = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
+            playButton.setImage(image, for: .normal)
         }
     }
     
@@ -147,35 +137,37 @@ class ViewController: UIViewController {
     
     @IBAction func setFullScreen(_ sender: Any) {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-
+            
             let value = UIInterfaceOrientation.landscapeRight.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
             
             currentTimeLabel.textColor = UIColor.white
             durationLabel.textColor = UIColor.white
 
-            let volumeImage = UIImage(named: ButtonConstant.volumeUp)?.withRenderingMode(.alwaysTemplate)
+            let volumeImage = UIImage(named: Constants.volumeUp)?.withRenderingMode(.alwaysTemplate)
             volumeButton.setImage(volumeImage, for: .normal)
             volumeButton.tintColor = UIColor.white
             
-            let rewindImage = UIImage(named: ButtonConstant.playRewind)?.withRenderingMode(.alwaysTemplate)
+            let rewindImage = UIImage(named: Constants.playRewind)?.withRenderingMode(.alwaysTemplate)
             rewindButton.setImage(rewindImage, for: .normal)
             rewindButton.tintColor = UIColor.white
             
-            let playImage = UIImage(named: ButtonConstant.play)?.withRenderingMode(.alwaysTemplate)
+            let playImage = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
             playButton.setImage(playImage, for: .normal)
             playButton.tintColor = UIColor.white
             
-            let forwardImage = UIImage(named: ButtonConstant.playForward)?.withRenderingMode(.alwaysTemplate)
+            let forwardImage = UIImage(named: Constants.playForward)?.withRenderingMode(.alwaysTemplate)
             forwardButton.setImage(forwardImage, for: .normal)
             forwardButton.tintColor = UIColor.white
             
-            let fullScreenImage = UIImage(named: ButtonConstant.fullScreenExit)?.withRenderingMode(.alwaysTemplate)
+            let fullScreenImage = UIImage(named: Constants.fullScreenExit)?.withRenderingMode(.alwaysTemplate)
             fullScreenButton.setImage(fullScreenImage, for: .normal)
             fullScreenButton.tintColor = UIColor.white
             
             controlBarToBottom.constant = 10
             slideToControlBar.constant = 10
+            
+            navigationController?.navigationBar.isHidden = true
             
         } else {
             
@@ -185,28 +177,30 @@ class ViewController: UIViewController {
             currentTimeLabel.textColor = UIColor.black
             durationLabel.textColor = UIColor.black
             
-            let volumeImage = UIImage(named: ButtonConstant.volumeUp)?.withRenderingMode(.alwaysTemplate)
+            let volumeImage = UIImage(named: Constants.volumeUp)?.withRenderingMode(.alwaysTemplate)
             volumeButton.setImage(volumeImage, for: .normal)
             volumeButton.tintColor = UIColor.black
             
-            let rewindImage = UIImage(named: ButtonConstant.playRewind)?.withRenderingMode(.alwaysTemplate)
+            let rewindImage = UIImage(named: Constants.playRewind)?.withRenderingMode(.alwaysTemplate)
             rewindButton.setImage(rewindImage, for: .normal)
             rewindButton.tintColor = UIColor.black
             
-            let playImage = UIImage(named: ButtonConstant.play)?.withRenderingMode(.alwaysTemplate)
+            let playImage = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
             playButton.setImage(playImage, for: .normal)
             playButton.tintColor = UIColor.black
             
-            let forwardImage = UIImage(named: ButtonConstant.playForward)?.withRenderingMode(.alwaysTemplate)
+            let forwardImage = UIImage(named: Constants.playForward)?.withRenderingMode(.alwaysTemplate)
             forwardButton.setImage(forwardImage, for: .normal)
             forwardButton.tintColor = UIColor.black
             
-            let fullScreenImage = UIImage(named: ButtonConstant.fullScreen)?.withRenderingMode(.alwaysTemplate)
+            let fullScreenImage = UIImage(named: Constants.fullScreen)?.withRenderingMode(.alwaysTemplate)
             fullScreenButton.setImage(fullScreenImage, for: .normal)
             fullScreenButton.tintColor = UIColor.black
             
             controlBarToBottom.constant = 30
             slideToControlBar.constant = 30
+            
+            navigationController?.navigationBar.isHidden = false
         }
     }
     
@@ -236,13 +230,12 @@ class ViewController: UIViewController {
     @IBAction func setVolume(_ sender: Any) {
         if player.volume == 0 {
             player.volume = 1
-            volumeButton.setImage(UIImage(named: ButtonConstant.volumeUp), for: .normal)
+            volumeButton.setImage(UIImage(named: Constants.volumeUp), for: .normal)
         } else {
             player.volume = 0
-            volumeButton.setImage(UIImage(named: ButtonConstant.volumeOff), for: .normal)
+            volumeButton.setImage(UIImage(named: Constants.volumeOff), for: .normal)
         }
     }
-    
 }
 
 // 1. landscape to hide navi bar
