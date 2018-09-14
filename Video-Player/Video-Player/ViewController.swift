@@ -143,18 +143,10 @@ class ViewController: UIViewController {
             
             currentTimeLabel.textColor = UIColor.white
             durationLabel.textColor = UIColor.white
-
-            let volumeImage = UIImage(named: Constants.volumeUp)?.withRenderingMode(.alwaysTemplate)
-            volumeButton.setImage(volumeImage, for: .normal)
-            volumeButton.tintColor = UIColor.white
             
             let rewindImage = UIImage(named: Constants.playRewind)?.withRenderingMode(.alwaysTemplate)
             rewindButton.setImage(rewindImage, for: .normal)
             rewindButton.tintColor = UIColor.white
-            
-            let playImage = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
-            playButton.setImage(playImage, for: .normal)
-            playButton.tintColor = UIColor.white
             
             let forwardImage = UIImage(named: Constants.playForward)?.withRenderingMode(.alwaysTemplate)
             forwardButton.setImage(forwardImage, for: .normal)
@@ -163,6 +155,26 @@ class ViewController: UIViewController {
             let fullScreenImage = UIImage(named: Constants.fullScreenExit)?.withRenderingMode(.alwaysTemplate)
             fullScreenButton.setImage(fullScreenImage, for: .normal)
             fullScreenButton.tintColor = UIColor.white
+            
+            if player.rate == 0 {
+                let image = UIImage(named: Constants.stop)?.withRenderingMode(.alwaysTemplate)
+                playButton.setImage(image, for: .normal)
+                playButton.tintColor = UIColor.white
+            } else {
+                let image = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
+                playButton.setImage(image, for: .normal)
+                playButton.tintColor = UIColor.white
+            }
+            
+            if player.volume == 0 {
+                let volumeImage = UIImage(named: Constants.volumeUp)?.withRenderingMode(.alwaysTemplate)
+                volumeButton.setImage(volumeImage, for: .normal)
+                volumeButton.tintColor = UIColor.white
+            } else {
+                let volumeImage = UIImage(named: Constants.volumeOff)?.withRenderingMode(.alwaysTemplate)
+                volumeButton.setImage(volumeImage, for: .normal)
+                volumeButton.tintColor = UIColor.white
+            }
             
             controlBarToBottom.constant = 10
             slideToControlBar.constant = 10
@@ -184,11 +196,7 @@ class ViewController: UIViewController {
             let rewindImage = UIImage(named: Constants.playRewind)?.withRenderingMode(.alwaysTemplate)
             rewindButton.setImage(rewindImage, for: .normal)
             rewindButton.tintColor = UIColor.black
-            
-            let playImage = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
-            playButton.setImage(playImage, for: .normal)
-            playButton.tintColor = UIColor.black
-            
+     
             let forwardImage = UIImage(named: Constants.playForward)?.withRenderingMode(.alwaysTemplate)
             forwardButton.setImage(forwardImage, for: .normal)
             forwardButton.tintColor = UIColor.black
@@ -196,6 +204,26 @@ class ViewController: UIViewController {
             let fullScreenImage = UIImage(named: Constants.fullScreen)?.withRenderingMode(.alwaysTemplate)
             fullScreenButton.setImage(fullScreenImage, for: .normal)
             fullScreenButton.tintColor = UIColor.black
+            
+            if player.rate == 0 {
+                let image = UIImage(named: Constants.stop)?.withRenderingMode(.alwaysTemplate)
+                playButton.setImage(image, for: .normal)
+                playButton.tintColor = UIColor.black
+            } else {
+                let image = UIImage(named: Constants.play)?.withRenderingMode(.alwaysTemplate)
+                playButton.setImage(image, for: .normal)
+                playButton.tintColor = UIColor.black
+            }
+            
+            if player.volume == 0 {
+                let volumeImage = UIImage(named: Constants.volumeUp)?.withRenderingMode(.alwaysTemplate)
+                volumeButton.setImage(volumeImage, for: .normal)
+                volumeButton.tintColor = UIColor.black
+            } else {
+                let volumeImage = UIImage(named: Constants.volumeOff)?.withRenderingMode(.alwaysTemplate)
+                volumeButton.setImage(volumeImage, for: .normal)
+                volumeButton.tintColor = UIColor.black
+            }
             
             controlBarToBottom.constant = 30
             slideToControlBar.constant = 30

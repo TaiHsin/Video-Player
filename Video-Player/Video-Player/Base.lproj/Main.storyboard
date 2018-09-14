@@ -83,6 +83,7 @@
                                             <constraint firstAttribute="height" constant="24" id="BuG-YQ-vaP"/>
                                             <constraint firstAttribute="width" constant="24" id="Dtz-vV-pE6"/>
                                         </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button" image="btn_volume_up">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
