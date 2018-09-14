@@ -32,9 +32,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Resize when rotate
         playerLayer.videoGravity = .resize
-        
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
     }
@@ -54,7 +52,6 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Rotate back to portrait before leave view
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
     }
@@ -62,7 +59,6 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Define videoView is the playerLayer's frame
         playerLayer.frame = videoView.bounds
     }
     
@@ -112,14 +108,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playForward(_ sender: Any) {
-        
-        // Get total duration of video
-        guard let duration = player.currentItem?.duration else { return } // currentItem?
+ 
+        guard let duration = player.currentItem?.duration else { return }
         let currentTime = CMTimeGetSeconds(player.currentTime())
         let newTime = currentTime + 10.0
         
         if newTime < (CMTimeGetSeconds(duration) - 10.0) {
-            let time: CMTime = CMTimeMake(Int64(newTime * 1000), 1000) // why devide by 1000?
+            let time: CMTime = CMTimeMake(Int64(newTime * 1000), 1000)
             player.seek(to: time)
         }
     }
@@ -246,7 +241,7 @@ class ViewController: UIViewController {
         let totalSeconds = CMTimeGetSeconds(time)
         let hours = Int(totalSeconds / 3600)
         let minutes = Int(totalSeconds / 60) % 60
-        let seconds = Int(totalSeconds.truncatingRemainder(dividingBy: 60)) //??
+        let seconds = Int(totalSeconds.truncatingRemainder(dividingBy: 60))
         
         if hours > 0 {
             return String(format: "%i:%02i:%02i", arguments: [hours, minutes, seconds])
@@ -265,11 +260,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-// 1. landscape to hide navi bar
-// 2. landscape to hide control bar
-// 3. determine url is valid or not to show "目前沒有可播放的影片"
-// 4. Solve duplicate player playing issue when search url more than one time
-
-// What is timescale
-// CMTime and seconds convetion
