@@ -22,23 +22,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var fullScreenButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     
-    var player: AVPlayer!
-    var playerLayer: AVPlayerLayer!
-    
+    var player = AVPlayer()
+    var playerLayer =  AVPlayerLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        guard let url = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4") else { return }
-//        player = AVPlayer(url: url)
-//
-//        playerLayer = AVPlayerLayer(player: player)
-//
-//        // Resize when rotate
-//        playerLayer.videoGravity = .resize
-//
-//        videoView.layer.addSublayer(playerLayer)
+        // Resize when rotate
+        playerLayer.videoGravity = .resize
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,44 +40,76 @@ class ViewController: UIViewController {
         searchButton.layer.borderWidth = 1
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        player.play()
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         // Define videoView is the playerLayer's frame
+        playerLayer.frame = videoView.bounds
         
     }
     
     @IBAction func searchAndPlay(_ sender: Any) {
-        
         guard let url = urlTextField.text else { return }
         print(url)
         guard let videoUrl = URL(string: url) else { return }
+        
         player = AVPlayer(url: videoUrl)
-        
         playerLayer = AVPlayerLayer(player: player)
-        
-        // Resize when rotate
-        playerLayer.videoGravity = .resize
-        
         videoView.layer.addSublayer(playerLayer)
-        playerLayer.frame = videoView.bounds
+        
         player.play()
+        
+        playButton.setImage(#imageLiteral(resourceName: "btn_stop"), for: .normal)
+        
+        urlTextField.text = ""
 
     }
     
-    @IBAction func playVideo(_ sender: Any) {
-        player.pause()
+    @IBAction func playPressed(_ sender: UIButton) {
+        
+        if player.rate == 0 {
+            player.play()
+            sender.setImage(#imageLiteral(resourceName: "btn_stop"), for: .normal)
+        } else {
+            player.pause()
+            sender.setImage(#imageLiteral(resourceName: "btn_play"), for: .normal)
+        }
+        
+//        if isVideoPlaying {
+//            player.pause()
+//            sender.setImage(#imageLiteral(resourceName: "btn_play"), for: .normal)
+//        } else {
+//            player.play()
+//            sender.setImage(#imageLiteral(resourceName: "btn_stop"), for: .normal)
+//        }
+//        isVideoPlaying = !isVideoPlaying
     }
     
     @IBAction func playForward(_ sender: Any) {
+        
+        // Get total duration of video
+        guard let duration = player.currentItem?.duration else { return }
+        let currentTime = CMTimeGetSeconds(player.currentTime())
+        let newTime = currentTime + 10.0
+        
+        if newTime < (CMTimeGetSeconds(duration) - 10.0) {
+            let time: CMTime = CMTimeMake(Int64(newTime * 1000), 1000)
+            player.seek(to: time)
+        }
     }
     @IBAction func playRewind(_ sender: Any) {
+        let currenTime = CMTimeGetSeconds(player.currentTime())
+        var newTime = currenTime - 10.0
+        
+        if newTime < 0 {
+            newTime = 0
+        }
+        let time: CMTime = CMTimeMake(Int64(newTime * 1000), 1000)
+        player.seek(to: time)
     }
     
 //    @IBAction func setFullScreen(_ sender: Any) {
@@ -97,3 +120,10 @@ class ViewController: UIViewController {
     
 }
 
+// 1. landscape to hide navi bar
+// 2. landscape to show control bar
+// 3. determine url is valid or not to show "目前沒有可播放的影片"
+// 4. Solve duplicate player playing issue when search url more than one time
+
+// What is timescale
+// CMTime and seconds convetion

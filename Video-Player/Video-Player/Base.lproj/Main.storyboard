@@ -74,7 +74,7 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="btn_play"/>
                                         <connections>
-                                            <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xAN-Pt-plu"/>
+                                            <action selector="playPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xAN-Pt-plu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aR9-wl-Ev3">
