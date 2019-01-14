@@ -1,0 +1,6 @@
+version: "Apple Swift version 4.2.1 (swiftlang-1000.11.42 clang-1000.11.45.1)"
+options: "b3df1d1dcfddcb4b478e550301cec4cf"
+build_time: [1547449535, 567681000]
+inputs:
+  "/Users/tsihsinlee/Documents/Video-Player/Video-Player/Video-Player/ViewController.swift": [9223372036, 854775807]
+  "/Users/tsihsinlee/Documents/Video-Player/Video-Player/Video-Player/AppDelegate.swift": [9223372036, 854775807]
